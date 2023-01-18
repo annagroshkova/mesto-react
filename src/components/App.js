@@ -12,7 +12,7 @@ function App() {
   const [isConfirmPopupOpen, setConfirmPopupOpen] = useState(false)
 
   function handleEditAvatarClick() {
-    setEditProfilePopupOpen(true)
+    setEditAvatarPopupOpen(true)
   }
 
   function handleEditProfileClick() {
@@ -51,7 +51,7 @@ function App() {
             id="name"
             name="name"
             placeholder="Имя"
-            value=""
+            defaultValue=""
             minLength="2"
             maxLength="40"
             required
@@ -63,7 +63,7 @@ function App() {
             id="about"
             name="about"
             placeholder="О себе"
-            value=""
+            defaultValue=""
             minLength="2"
             maxLength="200"
             required
@@ -82,7 +82,7 @@ function App() {
             id="place-name"
             name="place-name"
             placeholder="Название"
-            value=""
+            defaultValue=""
             minLength="2"
             maxLength="40"
             required
@@ -94,7 +94,7 @@ function App() {
             id="image-link"
             name="image-link"
             placeholder="Ссылка на картинку"
-            value=""
+            defaultValue=""
             required
           />
           <span className="popup__error image-link-error"></span>
@@ -111,7 +111,7 @@ function App() {
             id="avatar"
             name="avatar"
             placeholder="Ссылка на картинку"
-            value=""
+            defaultValue=""
             required
           />
           <span className="popup__error avatar-error"></span>
@@ -122,21 +122,6 @@ function App() {
                      isOpen={isConfirmPopupOpen} onClose={closeAllPopups}/>
 
       <PopupWithImage />
-
-
-      <template id="card-container">
-        <article className="element">
-          <img className="element__image" src="src#" alt=""/>
-          <button className="element__trash-icon" type="button" aria-label="Удалить"></button>
-          <div className="element__info">
-            <h2 className="element__text"></h2>
-            <div className="element__likes">
-              <button className="element__like-button" type="button" aria-label="Нравится"></button>
-              <p className="element__likes-amount">0</p>
-            </div>
-          </div>
-        </article>
-      </template>
     </div>
   );
 }
