@@ -7,8 +7,8 @@ export default function PopupWithForm(props) {
         <h3 className="popup__heading">{props.title}</h3>
         <form name={props.name} className={`popup__form popup__form_${props.name}`} noValidate>
           {props.children}
+          <button className="popup__submit-button" type="submit">{props.submitButtonTitle}</button>
         </form>
-        <button className="popup__submit-button" type="submit">{props.submitButtonTitle}</button>
         <button className="popup__close-button"
                 type="button"
                 aria-label="Закрыть"
