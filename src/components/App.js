@@ -3,7 +3,7 @@ import Main from './Main.js';
 import Footer from './Footer.js'
 import {useState} from "react";
 import PopupWithForm from "./PopupWithForm";
-import PopupWithImage from "./PopupWithImage";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false)
@@ -124,7 +124,7 @@ function App() {
       <PopupWithForm name="confirm" title="Вы уверены?" submitButtonTitle="Да"
                      isOpen={isConfirmPopupOpen} onClose={closeAllPopups}/>
 
-      <PopupWithImage card={selectedCard} onClose={closeAllPopups}/>
+      <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
     </div>
   );
 }
