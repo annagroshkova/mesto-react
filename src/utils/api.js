@@ -94,7 +94,7 @@ class Api {
 
   /**
    * @param {string} cardId
-   * @param {string} liked
+   * @param {boolean} liked
    * @returns {Promise<import("../types").CardObject>}
    */
   likeCard(cardId, liked) {

@@ -14,7 +14,7 @@ export function Card(props) {
       <div className="element__info">
         <h2 className="element__text">{card.name}</h2>
         <div className="element__likes">
-          <button className={`element__like-button ${isLiked && "element__like-button_active"}`} type="button" aria-label="Нравится"></button>
+          <button className={`element__like-button ${isLiked && "element__like-button_active"}`} type="button" aria-label="Нравится" onClick={handleLikeClick}></button>
           <p className="element__likes-amount">{card.likes.length}</p>
         </div>
       </div>
@@ -25,7 +25,11 @@ export function Card(props) {
     props.onCardClick(card)
   }
 
-  function handleDeleteClick () {
+  function handleLikeClick() {
+    props.onCardLike(card)
+  }
 
+  function handleDeleteClick () {
+    props.onCardDelete(card)
   }
 }
