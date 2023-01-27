@@ -1,14 +1,20 @@
+import {useContext} from "react";
+import {CurrentUserContext} from "../contexts/CurrentUserContext";
+
 export function Card(props) {
-  const card = /** @type {import("../types").CardObject} */ props.card
+  const card = /** @type {import("../types").CardObject} */ props.card;
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = card.owner._id === currentUser._id;
+  const isLiked = card.likes.some(i => i._id === currentUser._id);
 
   return(
     <article className="element" key={card._id}>
       <img className="element__image" src={card.link} alt={card.name} onClick={handleCardClick}/>
-      <button className="element__trash-icon" type="button" aria-label="Удалить"></button>
+      {isOwn && <button className="element__trash-icon" type="button" aria-label="Удалить" onClick={handleDeleteClick}></button>}
       <div className="element__info">
         <h2 className="element__text">{card.name}</h2>
         <div className="element__likes">
-          <button className="element__like-button" type="button" aria-label="Нравится"></button>
+          <button className={`element__like-button ${isLiked && "element__like-button_active"}`} type="button" aria-label="Нравится"></button>
           <p className="element__likes-amount">{card.likes.length}</p>
         </div>
       </div>
@@ -17,5 +23,9 @@ export function Card(props) {
 
   function handleCardClick () {
     props.onCardClick(card)
+  }
+
+  function handleDeleteClick () {
+
   }
 }

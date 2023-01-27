@@ -1,21 +1,17 @@
-import {useEffect, useState} from "react";
-import {api} from "../utils/api";
+import {useContext, useEffect, useState} from "react";
 import {Card} from "./Card";
+import {CurrentUserContext} from "../contexts/CurrentUserContext";
+import {api} from "../utils/api";
 
 function Main(props) {
+  const currentUser = useContext(CurrentUserContext)
 
-  const [userName, setUserName] = useState('');
-  const [userDescription, setUserDescription] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
   const [cards, setCards] = useState(/** @type {import("../types").CardObject[]} */[])
 
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([user, cards]) => {
-        setUserName(user.name);
-        setUserDescription(user.about);
-        setUserAvatar(user.avatar);
-        setCards(cards)
+    api.getInitialCards()
+      .then(cards => {
+        setCards(cards);
       })
       .catch(err => console.error(err));
   }, [])
@@ -31,17 +27,17 @@ function Main(props) {
               onClick={props.onEditAvatar}
               aria-label="Сменить аватар"
             ></button>
-            <img className="profile__avatar" src={userAvatar} alt="аватар"/>
+            <img className="profile__avatar" src={currentUser.avatar} alt="аватар"/>
           </div>
           <div className="profile__info">
             <div className="profile__name">
-              <h1 className="profile__name-text">{userName}</h1>
+              <h1 className="profile__name-text">{currentUser.name}</h1>
               <button className="profile__edit-button"
                       type="button"
                       onClick={props.onEditProfile}
                       aria-label="Редактировать"></button>
             </div>
-            <p className="profile__description">{userDescription}</p>
+            <p className="profile__description">{currentUser.about}</p>
           </div>
           <button className="profile__add-button" type="button"
                   onClick={props.onAddPlace}
