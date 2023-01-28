@@ -14,3 +14,8 @@ export interface CardObject {
   owner: UserObject;
   _id: string;
 }
+
+export interface CardInput {
+  name: string;
+  link: string;
+}

@@ -68,17 +68,13 @@ class Api {
   }
 
   /**
-   * @param {string} name
-   * @param {string} link
+   * @param {import("../types").CardInput} card
    * @returns {Promise<import("../types").CardObject>}
    */
-  postNewCard(name, link) {
+  postNewCard(card) {
     return this._request(`cards`, {
       method: 'POST',
-      body: JSON.stringify({
-        name,
-        link,
-      }),
+      body: JSON.stringify(card),
     });
   }
 
