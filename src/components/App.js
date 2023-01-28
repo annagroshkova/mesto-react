@@ -6,6 +6,8 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import {api} from "../utils/api";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(/** @type {import("../types").UserObject} */{})
@@ -36,6 +38,20 @@ function App() {
   function handleCardDelete(card) {
     api.deleteCard(card._id).then(() => {
       setCards(cards.filter(c => c._id !== card._id))
+    })
+  }
+
+  function handleUpdateUser(user) {
+    api.patchUserInfo(user).then((user) => {
+      setCurrentUser(user)
+      closeAllPopups()
+    })
+  }
+
+  function handleUpdateAvatar(avatar) {
+    api.patchAvatar(avatar).then((user) => {
+      setCurrentUser(user)
+      closeAllPopups()
     })
   }
 
@@ -76,36 +92,7 @@ function App() {
 
         <Footer />
 
-        <PopupWithForm name="edit" title="Редактировать профиль" submitButtonTitle="Сохранить"
-          isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-          <fieldset className="popup__info">
-            <input
-              className="popup__input popup__input_type_name"
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Имя"
-              defaultValue=""
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="popup__error name-error"></span>
-            <input
-              className="popup__input popup__input_type_description"
-              type="text"
-              id="about"
-              name="about"
-              placeholder="О себе"
-              defaultValue=""
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span className="popup__error about-error"></span>
-          </fieldset>
-
-        </PopupWithForm>
+        <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
 
         <PopupWithForm name="add" title="Новое место" submitButtonTitle="Создать"
           isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
@@ -135,22 +122,8 @@ function App() {
           </fieldset>
         </PopupWithForm>
 
-        <PopupWithForm name="edit-avatar" title="Обновить аватар"
-                       submitButtonTitle="Создать"
-                       isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
-          <fieldset className="popup__info">
-            <input
-              className="popup__input popup__input_type_avatar"
-              type="url"
-              id="avatar"
-              name="avatar"
-              placeholder="Ссылка на картинку"
-              defaultValue=""
-              required
-            />
-            <span className="popup__error avatar-error"></span>
-          </fieldset>
-        </PopupWithForm>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+
 
         <PopupWithForm name="confirm" title="Вы уверены?" submitButtonTitle="Да"
                        isOpen={isConfirmPopupOpen} onClose={closeAllPopups}/>
