@@ -33,34 +33,34 @@ function App() {
 
     api.likeCard(card._id, !isLiked).then((newCard) => {
       setCards(cards.map(c => c._id === card._id ? newCard : c));
-    });
+    }).catch(err => console.error(err));
   }
 
   function handleCardDelete(card) {
     api.deleteCard(card._id).then(() => {
       setCards(cards.filter(c => c._id !== card._id))
-    })
+    }).catch(err => console.error(err));
   }
 
   function handleUpdateUser(user) {
     api.patchUserInfo(user).then((user) => {
       setCurrentUser(user)
       closeAllPopups()
-    })
+    }).catch(err => console.error(err));
   }
 
   function handleUpdateAvatar(avatar) {
     api.patchAvatar(avatar).then((user) => {
       setCurrentUser(user)
       closeAllPopups()
-    })
+    }).catch(err => console.error(err));
   }
 
   function handleAddPlaceSubmit(/** @type import("../types").CardInput */ card) {
     api.postNewCard(card).then(newCard => {
       setCards([newCard, ...cards])
       closeAllPopups()
-    })
+    }).catch(err => console.error(err));
   }
 
   function handleEditAvatarClick() {
