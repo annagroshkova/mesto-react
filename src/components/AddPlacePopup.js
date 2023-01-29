@@ -1,5 +1,5 @@
 import PopupWithForm from "./PopupWithForm.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function AddPlacePopup(props) {
   const [name, setName] = useState('')
@@ -14,6 +14,13 @@ export default function AddPlacePopup(props) {
     });
   }
 
+  useEffect(() => {
+    if (props.isOpen) {
+      setName('')
+      setLink('')
+    }
+  }, [props.isOpen])
+
   return (
     <PopupWithForm name="add" title="Новое место" submitButtonTitle="Создать"
                    isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit}>
@@ -23,7 +30,7 @@ export default function AddPlacePopup(props) {
           type="text"
           name="name"
           placeholder="Название"
-          defaultValue=""
+          value={name}
           minLength="2"
           maxLength="40"
           required
@@ -35,7 +42,7 @@ export default function AddPlacePopup(props) {
           type="url"
           name="link"
           placeholder="Ссылка на картинку"
-          defaultValue=""
+          value={link}
           required
           onChange={e => setLink(e.target.value)}
         />

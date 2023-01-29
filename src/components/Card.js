@@ -7,6 +7,19 @@ export function Card(props) {
   const isOwn = card.owner._id === currentUser._id;
   const isLiked = card.likes.some(i => i._id === currentUser._id);
 
+
+  function handleCardClick () {
+    props.onCardClick(card)
+  }
+
+  function handleLikeClick() {
+    props.onCardLike(card)
+  }
+
+  function handleDeleteClick () {
+    props.onCardDelete(card)
+  }
+
   return(
     <article className="element" key={card._id}>
       <img className="element__image" src={card.link} alt={card.name} onClick={handleCardClick}/>
@@ -20,16 +33,5 @@ export function Card(props) {
       </div>
     </article>
   )
-
-  function handleCardClick () {
-    props.onCardClick(card)
-  }
-
-  function handleLikeClick() {
-    props.onCardLike(card)
-  }
-
-  function handleDeleteClick () {
-    props.onCardDelete(card)
-  }
 }
+

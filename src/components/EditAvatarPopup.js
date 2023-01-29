@@ -1,5 +1,5 @@
 import PopupWithForm from "./PopupWithForm.js";
-import {useRef,} from "react";
+import {useEffect, useRef,} from "react";
 
 export default function EditAvatarPopup(props) {
   const avatarRef = useRef();
@@ -9,6 +9,10 @@ export default function EditAvatarPopup(props) {
 
     props.onUpdateAvatar(avatarRef.current.value);
   }
+
+  useEffect(() => {
+    avatarRef.current.value = ''
+  }, [props.isOpen])
 
   return (
     <PopupWithForm name="edit-avatar" title="Обновить аватар"

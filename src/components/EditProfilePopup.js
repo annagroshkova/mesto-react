@@ -12,7 +12,7 @@ export default function EditProfilePopup (props) {
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, props.isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -33,7 +33,7 @@ export default function EditProfilePopup (props) {
         id="name"
         name="name"
         placeholder="Имя"
-        defaultValue={name}
+        value={name || ''}
         onChange={e => setName(e.target.value)}
         minLength="2"
         maxLength="40"
@@ -46,7 +46,7 @@ export default function EditProfilePopup (props) {
         id="about"
         name="about"
         placeholder="О себе"
-        defaultValue={description}
+        value={description || ''}
         onChange={e => setDescription(e.target.value)}
         minLength="2"
         maxLength="200"
