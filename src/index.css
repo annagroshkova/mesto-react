@@ -2,6 +2,7 @@
 @import './vendor/fonts/inter.css';
 @import './blocks/body/body.css';
 @import './blocks/header/header.css';
+@import './blocks/header/__link/header__link.css';
 @import './blocks/header/__logo/header__logo.css';
 @import './blocks/main/main.css';
 @import './blocks/profile/profile.css';
@@ -44,3 +45,12 @@
 @import './blocks/popup/__submit-button/popup__submit-button.css';
 @import './blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css';
 @import './blocks/popup/__close-button/popup__close-button.css';
+@import './blocks/register/register.css';
+@import './blocks/register/__container/register__container.css';
+@import './blocks/register/__form/register__form.css';
+@import './blocks/register/__heading/register__heading.css';
+@import './blocks/register/__info/register__info.css';
+@import './blocks/register/__input/register__input.css';
+@import './blocks/register/__submit-button/register__submit-button.css';
+@import './blocks/register/__undertext/register__undertext.css';
+@import './blocks/register/__login-link/register__login-link.css';

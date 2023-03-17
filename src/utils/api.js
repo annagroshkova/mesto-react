@@ -98,6 +98,41 @@ class Api {
       method: liked ? 'PUT' : 'DELETE',
     });
   }
+
+  /**
+   * @param {import("../types").Credentials} body
+   * @returns {Promise<void>}
+   */
+  signup(body) {
+    return this._request(`signup`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+    })
+  }
+
+  /**
+   * @param {import("../types").Credentials} body
+   * @returns {Promise<import("../types").SigninResponse>}
+   */
+  signin(body) {
+    return this._request(`signin`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+    })
+  }
+
+  /**
+   * @param {string} token
+   * @returns {Promise<import("../types").MyInfo>}
+   */
+  getMyInfo(token) {
+    return this._request(`users/me`, {
+      method: 'GET',
+      headers: {
+        "Authorization" : `Bearer ${token}`,
+      },
+    })
+  }
 }
 
 export const api = new Api({
@@ -107,3 +142,10 @@ export const api = new Api({
     'Content-Type': 'application/json',
   },
 });
+
+export const authApi = new Api({
+  baseUrl: 'https://auth.nomoreparties.co',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})

@@ -19,3 +19,17 @@ export interface CardInput {
   name: string;
   link: string;
 }
+
+export interface Credentials {
+  email: string
+  password: string
+}
+
+export interface SigninResponse {
+  token: string
+}
+
+export interface MyInfo {
+  _id: string
+  email: string
+}
