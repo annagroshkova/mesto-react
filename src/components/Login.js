@@ -7,7 +7,6 @@ export default function Login(props) {
 
     const form = ev.target
     const cred = /** @type import("../types").Credentials */ Object.fromEntries(new FormData(form).entries())
-    // console.log(cred)
 
     authApi.signin(cred).then(res => {
       props.onLogin(res)
@@ -17,7 +16,7 @@ export default function Login(props) {
   return (
     <div className="register">
 
-      <Header linkUrl="/register" linkText="Регистрация" />
+      <Header linkUrl="/sign-up" linkText="Регистрация" />
 
       <div className="register__container">
         <h3 className="register__heading">Вход</h3>
@@ -43,7 +42,7 @@ export default function Login(props) {
           </fieldset>
           <button className="register__submit-button" type="submit">Войти</button>
         </form>
-        <p className="register__undertext"></p>
+        <p className="register__undertext">&nbsp;</p>
       </div>
     </div>
   )

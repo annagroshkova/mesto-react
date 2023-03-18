@@ -49,8 +49,8 @@ export default function App() {
       <MyInfoContext.Provider value={myInfo}>
         <Routes>
           <Route path="/" element={<ProtectedRoute loggedIn={token} element={Home} onLogout={handleLogout} />} />
-          <Route path="/login" element={token ? <Navigate to="/" replace /> : <Login onLogin={handleLogin}/>} />
-          <Route path="/register" element={token ? <Navigate to="/" replace /> : <Register/>} />
+          <Route path="/sign-in" element={token ? <Navigate to="/" replace /> : <Login onLogin={handleLogin}/>} />
+          <Route path="/sign-up" element={token ? <Navigate to="/" replace /> : <Register/>} />
         </Routes>
       </MyInfoContext.Provider>
     </div>

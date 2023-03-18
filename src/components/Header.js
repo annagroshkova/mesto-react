@@ -11,8 +11,8 @@ export default function Header(props) {
       <header className="header">
         <img className="header__logo" src={logo} alt="Логотип сайта" />
 
-        <span style={{color: 'white'}}>{myInfo?.email}</span>
-        <Link to={props.linkUrl || '#'} className="header__link" onClick={props.onLinkClick}>{props.linkText}</Link>
+        <span className="header__email">{myInfo?.email}</span>
+        <Link to={props.linkUrl || '#'} className={`header__link ${props.linkExtraClass || ''}`} onClick={props.onLinkClick}>{props.linkText}</Link>
       </header>
     </div>
   );

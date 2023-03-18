@@ -86,7 +86,7 @@ export default function Home(props) {
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
-        <Header linkText="Выйти" onLinkClick={props.onLogout} />
+        <Header linkText="Выйти" onLinkClick={props.onLogout} linkExtraClass="header__link_grey" />
 
           <Main
             cards={cards}

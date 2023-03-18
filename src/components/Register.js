@@ -6,7 +6,7 @@ import {useState} from "react";
 
 export default function Register() {
   const navigate = useNavigate()
-  const [tooltipOpen, setTooltipOpen] = useState(true)
+  const [tooltipOpen, setTooltipOpen] = useState(false)
   const [success, setSuccess] = useState(false)
 
   function handleSubmit(ev) {
@@ -14,21 +14,29 @@ export default function Register() {
 
     const form = ev.target
     const cred = /** @type import("../types").Credentials */ Object.fromEntries(new FormData(form).entries())
-    console.log(cred)
 
-    authApi.signup(cred).then(() => {
-      navigate('/login')
-    })
+    authApi.signup(cred)
+      .then(() => {
+        setSuccess(true)
+        setTooltipOpen(true)
+      })
+      .catch(() => {
+        setSuccess(false)
+        setTooltipOpen(true)
+      })
   }
 
   function handlePopupClose() {
     setTooltipOpen(false)
+    if (success) {
+      navigate('/sign-in')
+    }
   }
 
   return (
     <div className="register">
 
-      <Header linkUrl="/login" linkText="Войти" />
+      <Header linkUrl="/sign-in" linkText="Войти" />
 
       <div className="register__container">
         <h3 className="register__heading">Регистрация</h3>

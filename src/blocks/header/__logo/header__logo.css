@@ -1,4 +1,6 @@
 .header__logo {
+  flex-grow: 4;
+  align-self: start;
   color: white;
   padding: 0 0 32px 27px;
   width: 104px;
