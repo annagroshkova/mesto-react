@@ -10,7 +10,7 @@ import {api} from "../utils/api";
 import {useEffect, useState} from "react";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
-export default function Home() {
+export default function Home(props) {
   const [currentUser, setCurrentUser] = useState(/** @type {import("../types").UserObject} */{})
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false)
@@ -86,7 +86,7 @@ export default function Home() {
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
-        <Header linkUrl="/register" linkText="Register" />
+        <Header linkText="Выйти" onLinkClick={props.onLogout} />
 
           <Main
             cards={cards}

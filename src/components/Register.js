@@ -1,8 +1,14 @@
 import Header from "./Header";
 import {authApi} from "../utils/api";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import InfoTooltip from "./InfoTooltip";
+import {useState} from "react";
 
 export default function Register() {
+  const navigate = useNavigate()
+  const [tooltipOpen, setTooltipOpen] = useState(true)
+  const [success, setSuccess] = useState(false)
+
   function handleSubmit(ev) {
     ev.preventDefault()
 
@@ -11,14 +17,18 @@ export default function Register() {
     console.log(cred)
 
     authApi.signup(cred).then(() => {
-      alert('it works!')
+      navigate('/login')
     })
+  }
+
+  function handlePopupClose() {
+    setTooltipOpen(false)
   }
 
   return (
     <div className="register">
 
-      <Header linkUrl="/" linkText="Home" />
+      <Header linkUrl="/login" linkText="Войти" />
 
       <div className="register__container">
         <h3 className="register__heading">Регистрация</h3>
@@ -47,6 +57,8 @@ export default function Register() {
         <p className="register__undertext">Уже зарегистрированы? <Link className="register__login-link" to="/login">Войти</Link>
         </p>
       </div>
+
+      <InfoTooltip isOpen={tooltipOpen} isSuccess={success} onClose={handlePopupClose} />
     </div>
   )
 }

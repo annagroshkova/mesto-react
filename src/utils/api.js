@@ -123,7 +123,7 @@ class Api {
 
   /**
    * @param {string} token
-   * @returns {Promise<import("../types").MyInfo>}
+   * @returns {Promise<import("../types").MyInfoResponse>}
    */
   getMyInfo(token) {
     return this._request(`users/me`, {

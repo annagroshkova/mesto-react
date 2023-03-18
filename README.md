@@ -19,9 +19,5 @@ https://annagroshkova.github.io/mesto-react/
 
 todo:
 
-- [ ] Context with User info (email, id)
-- [ ] Save token in localStorage
-- [ ] ProtectedRoute
-- [ ] Display email in the Header
 - [ ] Create Tooltip component (html, css, react)
 - [ ] Show tooltip on success and error

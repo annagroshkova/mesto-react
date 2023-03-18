@@ -1,24 +1,23 @@
 import {authApi} from "../utils/api";
 import Header from "./Header";
 
-export default function Login() {
+export default function Login(props) {
   function handleSubmit(ev) {
     ev.preventDefault()
 
     const form = ev.target
     const cred = /** @type import("../types").Credentials */ Object.fromEntries(new FormData(form).entries())
-    console.log(cred)
+    // console.log(cred)
 
     authApi.signin(cred).then(res => {
-      console.log(res)
-      alert('it works!')
+      props.onLogin(res)
     })
   }
 
   return (
     <div className="register">
 
-      <Header linkUrl="/" linkText="Home" />
+      <Header linkUrl="/register" linkText="Регистрация" />
 
       <div className="register__container">
         <h3 className="register__heading">Вход</h3>
@@ -42,7 +41,7 @@ export default function Login() {
               required
             />
           </fieldset>
-          <button className="register__submit-button" type="submit">Enter</button>
+          <button className="register__submit-button" type="submit">Войти</button>
         </form>
         <p className="register__undertext"></p>
       </div>

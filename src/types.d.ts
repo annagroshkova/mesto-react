@@ -29,6 +29,10 @@ export interface SigninResponse {
   token: string
 }
 
+export interface MyInfoResponse {
+  data: MyInfo
+}
+
 export interface MyInfo {
   _id: string
   email: string
