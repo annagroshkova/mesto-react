@@ -6,7 +6,7 @@ import {MyInfoContext} from "../contexts/MyInfoContext";
 import {useEffect, useState} from "react";
 import ProtectedRoute from './ProtectedRoute'
 import {getToken, removeToken, saveToken} from "../utils/storage";
-import {authApi} from "../utils/api";
+import {auth} from "../utils/auth";
 
 export default function App() {
   const navigate = useNavigate();
@@ -38,10 +38,11 @@ export default function App() {
       return
     }
 
-    authApi.getMyInfo(token).then(res => {
+    auth.getMyInfo(token).then(res => {
       setMyInfo(res.data)
       navigate('/')
     })
+      .catch(err => console.error(err));
   }
 
   return (

@@ -84,35 +84,33 @@ export default function Home(props) {
   }
 
   return (
-    <>
-      <CurrentUserContext.Provider value={currentUser}>
-        <Header linkText="Выйти" onLinkClick={props.onLogout} linkExtraClass="header__link_grey" />
+    <CurrentUserContext.Provider value={currentUser}>
+      <Header linkText="Выйти" onLinkClick={props.onLogout} linkExtraClass="header__link_grey" />
 
-          <Main
-            cards={cards}
-            onEditAvatar={handleEditAvatarClick}
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onCardClick={setSelectedCard}
-            onCardLike={handleCardLike}
-            onCardDelete ={handleCardDelete}
-          />
+        <Main
+          cards={cards}
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onCardClick={setSelectedCard}
+          onCardLike={handleCardLike}
+          onCardDelete ={handleCardDelete}
+        />
 
-          <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+        <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
 
-          <AddPlacePopup
-            isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
 
-          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
 
-          <PopupWithForm name="confirm" title="Вы уверены?" submitButtonTitle="Да"
-                         isOpen={isConfirmPopupOpen} onClose={closeAllPopups}/>
+        <PopupWithForm name="confirm" title="Вы уверены?" submitButtonTitle="Да"
+                       isOpen={isConfirmPopupOpen} onClose={closeAllPopups}/>
 
-          <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+        <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
-        <Footer />
-      </CurrentUserContext.Provider>
-    </>
+      <Footer />
+    </CurrentUserContext.Provider>
   )
 }

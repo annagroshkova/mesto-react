@@ -1,10 +1,8 @@
 function Footer() {
   return (
-    <div>
-      <footer className="footer">
-        <p className="footer__text">© 2020 Mesto Russia</p>
-      </footer>
-    </div>
+    <footer className="footer">
+      <p className="footer__text">© {new Date().getFullYear()} Mesto Russia</p>
+    </footer>
   );
 }
 

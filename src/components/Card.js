@@ -21,7 +21,7 @@ export function Card(props) {
   }
 
   return(
-    <article className="element" key={card._id}>
+    <article className="element">
       <img className="element__image" src={card.link} alt={card.name} onClick={handleCardClick}/>
       {isOwn && <button className="element__trash-icon" type="button" aria-label="Удалить" onClick={handleDeleteClick}></button>}
       <div className="element__info">

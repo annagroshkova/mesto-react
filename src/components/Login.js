@@ -1,16 +1,20 @@
-import {authApi} from "../utils/api";
 import Header from "./Header";
+import {auth} from "../utils/auth";
+import {useForm} from "../hooks/useForm";
 
 export default function Login(props) {
+  const {values, handleChange} = useForm({
+    // email: 'anna.matvyeyenko@gmail.com',
+    // password: '12345678',
+  })
+
   function handleSubmit(ev) {
     ev.preventDefault()
 
-    const form = ev.target
-    const cred = /** @type import("../types").Credentials */ Object.fromEntries(new FormData(form).entries())
-
-    authApi.signin(cred).then(res => {
+    auth.signin(values).then(res => {
       props.onLogin(res)
     })
+      .catch(err => console.error(err));
   }
 
   return (
@@ -27,8 +31,8 @@ export default function Login(props) {
               type="email"
               name="email"
               placeholder="Email"
-
-              defaultValue="anna.matvyeyenko@gmail.com"
+              defaultValue={values.email}
+              onChange={handleChange}
               required
             />
             <input
@@ -36,7 +40,8 @@ export default function Login(props) {
               type="password"
               name="password"
               placeholder="Пароль"
-              defaultValue="12345678"
+              defaultValue={values.password}
+              onChange={handleChange}
               required
             />
           </fieldset>

@@ -1,27 +1,28 @@
 import Header from "./Header";
-import {authApi} from "../utils/api";
 import {Link, useNavigate} from "react-router-dom";
 import InfoTooltip from "./InfoTooltip";
 import {useState} from "react";
+import {auth} from "../utils/auth";
+import {useForm} from "../hooks/useForm";
 
 export default function Register() {
   const navigate = useNavigate()
   const [tooltipOpen, setTooltipOpen] = useState(false)
   const [success, setSuccess] = useState(false)
+  const {values, handleChange} = useForm({})
 
   function handleSubmit(ev) {
     ev.preventDefault()
 
-    const form = ev.target
-    const cred = /** @type import("../types").Credentials */ Object.fromEntries(new FormData(form).entries())
-
-    authApi.signup(cred)
+    auth.signup(values)
       .then(() => {
         setSuccess(true)
-        setTooltipOpen(true)
       })
-      .catch(() => {
+      .catch(err => {
+        console.error(err)
         setSuccess(false)
+      })
+      .finally(() => {
         setTooltipOpen(true)
       })
   }
@@ -47,8 +48,7 @@ export default function Register() {
               type="email"
               name="email"
               placeholder="Email"
-
-              defaultValue="anna.matvyeyenko@gmail.com"
+              onChange={handleChange}
               required
             />
             <input
@@ -56,13 +56,13 @@ export default function Register() {
               type="password"
               name="password"
               placeholder="Пароль"
-              defaultValue="12345678"
+              onChange={handleChange}
               required
             />
           </fieldset>
           <button className="register__submit-button" type="submit">Зарегистрироваться</button>
         </form>
-        <p className="register__undertext">Уже зарегистрированы? <Link className="register__login-link" to="/login">Войти</Link>
+        <p className="register__undertext">Уже зарегистрированы? <Link className="register__login-link" to="/sign-in">Войти</Link>
         </p>
       </div>
 
