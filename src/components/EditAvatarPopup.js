@@ -1,5 +1,5 @@
-import PopupWithForm from "./PopupWithForm.js";
-import {useEffect, useRef,} from "react";
+import PopupWithForm from './PopupWithForm.js';
+import { useEffect, useRef } from 'react';
 
 export default function EditAvatarPopup(props) {
   const avatarRef = useRef();
@@ -11,13 +11,18 @@ export default function EditAvatarPopup(props) {
   }
 
   useEffect(() => {
-    avatarRef.current.value = ''
-  }, [props.isOpen])
+    avatarRef.current.value = '';
+  }, [props.isOpen]);
 
   return (
-    <PopupWithForm name="edit-avatar" title="Обновить аватар"
-                   submitButtonTitle="Создать"
-                   isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleUpdateAvatar}>
+    <PopupWithForm
+      name="edit-avatar"
+      title="Обновить аватар"
+      submitButtonTitle="Создать"
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+      onSubmit={handleUpdateAvatar}
+    >
       <fieldset className="popup__info">
         <input
           ref={avatarRef}
@@ -32,6 +37,5 @@ export default function EditAvatarPopup(props) {
         <span className="popup__error avatar-error"></span>
       </fieldset>
     </PopupWithForm>
-  )
+  );
 }
-

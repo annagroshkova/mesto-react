@@ -1,11 +1,10 @@
-
-const KEY = 'token'
+const KEY = 'token';
 
 /**
  * @returns {string | null}
  */
 export function getToken() {
-  return localStorage.getItem(KEY)
+  return localStorage.getItem(KEY);
 }
 
 /**
@@ -13,12 +12,12 @@ export function getToken() {
  * @returns {void}
  */
 export function saveToken(token) {
-  return localStorage.setItem(KEY, token)
+  return localStorage.setItem(KEY, token);
 }
 
 /**
  * @returns {void}
  */
 export function removeToken() {
-  return localStorage.removeItem(KEY)
+  return localStorage.removeItem(KEY);
 }

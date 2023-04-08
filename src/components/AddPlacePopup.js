@@ -1,9 +1,9 @@
-import PopupWithForm from "./PopupWithForm.js";
-import {useEffect, useState} from "react";
+import PopupWithForm from './PopupWithForm.js';
+import { useEffect, useState } from 'react';
 
 export default function AddPlacePopup(props) {
-  const [name, setName] = useState('')
-  const [link, setLink] = useState('')
+  const [name, setName] = useState('');
+  const [link, setLink] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,14 +16,20 @@ export default function AddPlacePopup(props) {
 
   useEffect(() => {
     if (props.isOpen) {
-      setName('')
-      setLink('')
+      setName('');
+      setLink('');
     }
-  }, [props.isOpen])
+  }, [props.isOpen]);
 
   return (
-    <PopupWithForm name="add" title="Новое место" submitButtonTitle="Создать"
-                   isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit}>
+    <PopupWithForm
+      name="add"
+      title="Новое место"
+      submitButtonTitle="Создать"
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+      onSubmit={handleSubmit}
+    >
       <fieldset className="popup__info">
         <input
           className="popup__input popup__input_type_place"
@@ -49,5 +55,5 @@ export default function AddPlacePopup(props) {
         <span className="popup__error image-link-error"></span>
       </fieldset>
     </PopupWithForm>
-  )
+  );
 }

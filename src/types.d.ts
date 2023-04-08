@@ -21,19 +21,19 @@ export interface CardInput {
 }
 
 export interface Credentials {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 export interface SigninResponse {
-  token: string
+  token: string;
 }
 
 export interface MyInfoResponse {
-  data: MyInfo
+  data: MyInfo;
 }
 
 export interface MyInfo {
-  _id: string
-  email: string
+  _id: string;
+  email: string;
 }

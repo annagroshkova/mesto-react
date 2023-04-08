@@ -1,42 +1,42 @@
-import Header from "./Header";
-import {Link, useNavigate} from "react-router-dom";
-import InfoTooltip from "./InfoTooltip";
-import {useState} from "react";
-import {auth} from "../utils/auth";
-import {useForm} from "../hooks/useForm";
+import Header from './Header';
+import { Link, useNavigate } from 'react-router-dom';
+import InfoTooltip from './InfoTooltip';
+import { useState } from 'react';
+import { auth } from '../utils/auth';
+import { useForm } from '../hooks/useForm';
 
 export default function Register() {
-  const navigate = useNavigate()
-  const [tooltipOpen, setTooltipOpen] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const {values, handleChange} = useForm({})
+  const navigate = useNavigate();
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const { values, handleChange } = useForm({});
 
   function handleSubmit(ev) {
-    ev.preventDefault()
+    ev.preventDefault();
 
-    auth.signup(values)
+    auth
+      .signup(values)
       .then(() => {
-        setSuccess(true)
+        setSuccess(true);
       })
       .catch(err => {
-        console.error(err)
-        setSuccess(false)
+        console.error(err);
+        setSuccess(false);
       })
       .finally(() => {
-        setTooltipOpen(true)
-      })
+        setTooltipOpen(true);
+      });
   }
 
   function handlePopupClose() {
-    setTooltipOpen(false)
+    setTooltipOpen(false);
     if (success) {
-      navigate('/sign-in')
+      navigate('/sign-in');
     }
   }
 
   return (
     <div className="register">
-
       <Header linkUrl="/sign-in" linkText="Войти" />
 
       <div className="register__container">
@@ -60,13 +60,19 @@ export default function Register() {
               required
             />
           </fieldset>
-          <button className="register__submit-button" type="submit">Зарегистрироваться</button>
+          <button className="register__submit-button" type="submit">
+            Зарегистрироваться
+          </button>
         </form>
-        <p className="register__undertext">Уже зарегистрированы? <Link className="register__login-link" to="/sign-in">Войти</Link>
+        <p className="register__undertext">
+          Уже зарегистрированы?{' '}
+          <Link className="register__login-link" to="/sign-in">
+            Войти
+          </Link>
         </p>
       </div>
 
       <InfoTooltip isOpen={tooltipOpen} isSuccess={success} onClose={handlePopupClose} />
     </div>
-  )
+  );
 }

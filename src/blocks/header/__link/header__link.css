@@ -7,7 +7,6 @@
   transition: color 0.2s ease-out;
 }
 
-
 .header__link:hover {
   color: rgba(225, 225, 225, 0.6);
 }

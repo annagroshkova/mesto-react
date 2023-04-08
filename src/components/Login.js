@@ -1,25 +1,26 @@
-import Header from "./Header";
-import {auth} from "../utils/auth";
-import {useForm} from "../hooks/useForm";
+import Header from './Header';
+import { auth } from '../utils/auth';
+import { useForm } from '../hooks/useForm';
 
 export default function Login(props) {
-  const {values, handleChange} = useForm({
+  const { values, handleChange } = useForm({
     // email: 'anna.matvyeyenko@gmail.com',
     // password: '12345678',
-  })
+  });
 
   function handleSubmit(ev) {
-    ev.preventDefault()
+    ev.preventDefault();
 
-    auth.signin(values).then(res => {
-      props.onLogin(res)
-    })
+    auth
+      .signin(values)
+      .then(res => {
+        props.onLogin(res);
+      })
       .catch(err => console.error(err));
   }
 
   return (
     <div className="register">
-
       <Header linkUrl="/sign-up" linkText="Регистрация" />
 
       <div className="register__container">
@@ -45,10 +46,12 @@ export default function Login(props) {
               required
             />
           </fieldset>
-          <button className="register__submit-button" type="submit">Войти</button>
+          <button className="register__submit-button" type="submit">
+            Войти
+          </button>
         </form>
         <p className="register__undertext">&nbsp;</p>
       </div>
     </div>
-  )
+  );
 }

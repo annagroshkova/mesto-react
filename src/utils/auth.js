@@ -34,7 +34,7 @@ class Auth {
     return this._request(`signup`, {
       method: 'POST',
       body: JSON.stringify(body),
-    })
+    });
   }
 
   /**
@@ -45,7 +45,7 @@ class Auth {
     return this._request(`signin`, {
       method: 'POST',
       body: JSON.stringify(body),
-    })
+    });
   }
 
   /**
@@ -56,9 +56,9 @@ class Auth {
     return this._request(`users/me`, {
       method: 'GET',
       headers: {
-        "Authorization" : `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
-    })
+    });
   }
 }
 
@@ -67,4 +67,4 @@ export const auth = new Auth({
   headers: {
     'Content-Type': 'application/json',
   },
-})
+});

@@ -5,7 +5,6 @@
   transition: color 0.2s ease-out;
 }
 
-
 .register__login-link:hover {
   color: rgba(225, 225, 225, 0.6);
 }
