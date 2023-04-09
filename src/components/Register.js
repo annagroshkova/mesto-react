@@ -9,7 +9,10 @@ export default function Register() {
   const navigate = useNavigate();
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { values, handleChange } = useForm({});
+  const { values, handleChange } = useForm({
+    email: '',
+    password: '',
+  });
 
   function handleSubmit(ev) {
     ev.preventDefault();
@@ -49,6 +52,7 @@ export default function Register() {
               name="email"
               placeholder="Email"
               onChange={handleChange}
+              value={values.email}
               required
             />
             <input
@@ -57,6 +61,7 @@ export default function Register() {
               name="password"
               placeholder="Пароль"
               onChange={handleChange}
+              value={values.password}
               required
             />
           </fieldset>

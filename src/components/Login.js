@@ -4,6 +4,8 @@ import { useForm } from '../hooks/useForm';
 
 export default function Login(props) {
   const { values, handleChange } = useForm({
+    email: '',
+    password: '',
     // email: 'anna.matvyeyenko@gmail.com',
     // password: '12345678',
   });
@@ -32,7 +34,7 @@ export default function Login(props) {
               type="email"
               name="email"
               placeholder="Email"
-              defaultValue={values.email}
+              value={values.email}
               onChange={handleChange}
               required
             />
@@ -41,7 +43,7 @@ export default function Login(props) {
               type="password"
               name="password"
               placeholder="Пароль"
-              defaultValue={values.password}
+              value={values.password}
               onChange={handleChange}
               required
             />
